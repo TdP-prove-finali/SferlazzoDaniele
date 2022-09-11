@@ -26,7 +26,7 @@ public class Simulatore {
 	//CODA DEGLI EVENTI
 	private Event eventoAttuale;
 	
-	public void init(Property abitazione, List<TourismData> turismoPrecedente) {	//TODO, CREARE NEL MODEL LISTA TURISMOPRECEDENTE
+	public void init(Property abitazione, List<TourismData> turismoPrecedente) {
 		//INIZIALIZZARE IL PRIMO EVENTO ED I PARAMETRI
 		
 		this.abitazione = abitazione;

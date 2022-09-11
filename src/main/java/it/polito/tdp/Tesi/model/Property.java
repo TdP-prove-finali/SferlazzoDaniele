@@ -26,7 +26,6 @@ public class Property {		//BASIC CLASS FOR THE TABLE PROPERTIES
 	
 	private double Latitude;
 	private double Longitude;
-	//TODO EVENTUALMENTE WRAPPARE LE COORDINATE IN UNA VARIABILE LATLONG
 	
 	private String regionName;
 	private int propertyCount;

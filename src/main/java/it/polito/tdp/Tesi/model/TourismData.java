@@ -63,7 +63,7 @@ public class TourismData {		//BASIC CLASS FOR THE TABLE TOURISM
 		return true;
 	}
 	@Override
-	public String toString() {	//TODO CAMBIARE EVENTUALMENTE IL TOSTRING
+	public String toString() {
 		return "TourismData [date=" + quarter + ", business=" + business + ", holiday=" + holiday + ", visiting="
 				+ visiting + ", other=" + other + "]";
 	}
