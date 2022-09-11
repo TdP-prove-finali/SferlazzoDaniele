@@ -85,9 +85,9 @@ public class Model {
 				somma -= resultList.get(resultList.size()-1).getPrice();
 				resultList.remove(resultList.size()-1);
 			}
-			String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
+			/*String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
 			for(Property p : resultList)
-				result += p+"\n";
+				result += p+"\n";*/
 			return resultList;
 			
 		}
@@ -121,9 +121,9 @@ public class Model {
 			}
 			
 			
-			String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
+			/*String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
 			for(Property p : resultList)
-				result += p+"\n";
+				result += p+"\n";*/
 			return resultList;
 			
 		}
@@ -139,7 +139,26 @@ public class Model {
 			
 		}
 		
-		return null;	//INUTILE
+		return null;	//INUTILE, PER NON DARE ERRORE
+	}
+	
+	public String simulazione(Property abitazione) {
+		
+		Simulatore simulatore = new Simulatore();
+		List<TourismData> turismoPrecedente = this.dao.getLast20TourismData();
+		
+		simulatore.init(abitazione, turismoPrecedente);
+		simulatore.run();
+		
+		int mesiTot = simulatore.getMesiTot();
+		List<Event> affitti = simulatore.getAffitti();
+		
+		String result = "Tempo di ritorno del capitale investito: " + mesiTot + "\n";
+		for(Event e : affitti)
+			result += e+"\n";
+		
+		return result;	//DA TOGLIERE
+		
 	}
 	
 }

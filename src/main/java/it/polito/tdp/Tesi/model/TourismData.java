@@ -4,36 +4,46 @@ import java.time.LocalDate;
 
 public class TourismData {		//BASIC CLASS FOR THE TABLE TOURISM
 	
-	private int id;
 	private LocalDate quarter;
-	private String purpose;
-	private double trips;
+	private double business;
+	private double holiday;
+	private double visiting;
+	private double other;
 	
-	public TourismData(int id, LocalDate quarter, String purpose, double trips) {
+	public TourismData(LocalDate quarter, double business, double holiday, double visiting, double other) {
 		super();
-		this.id = id;
 		this.quarter = quarter;
-		this.purpose = purpose;
-		this.trips = trips;
+		this.business = business;
+		this.holiday = holiday;
+		this.visiting = visiting;
+		this.other = other;
 	}
-	public int getId() {
-		return id;
-	}
+	
 	public LocalDate getQuarter() {
 		return quarter;
 	}
-	public String getPurpose() {
-		return purpose;
+	
+	public double getBusiness() {
+		return business;
 	}
-	public double getTrips() {
-		return trips;
+	
+	public double getHoliday() {
+		return holiday;
+	}
+	
+	public double getVisiting() {
+		return visiting;
+	}
+	
+	public double getOther() {
+		return other;
 	}
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((quarter == null) ? 0 : quarter.hashCode());
 		return result;
 	}
 	@Override
@@ -45,14 +55,20 @@ public class TourismData {		//BASIC CLASS FOR THE TABLE TOURISM
 		if (getClass() != obj.getClass())
 			return false;
 		TourismData other = (TourismData) obj;
-		if (id != other.id)
+		if (quarter == null) {
+			if (other.quarter != null)
+				return false;
+		} else if (!quarter.equals(other.quarter))
 			return false;
 		return true;
 	}
 	@Override
-	public String toString() {	//TODO EVENTUALE TO STRING
-		return "TourismData [id=" + id + ", quarter=" + quarter + ", purpose=" + purpose + ", trips=" + trips + "]";
+	public String toString() {	//TODO CAMBIARE EVENTUALMENTE IL TOSTRING
+		return "TourismData [date=" + quarter + ", business=" + business + ", holiday=" + holiday + ", visiting="
+				+ visiting + ", other=" + other + "]";
 	}
+	
+	
 	
 	
 	

@@ -144,7 +144,7 @@ public class EstateDao {
 				st.setString(4, sellerG);
 			}
 			
-			System.out.println(sql);	//DEBUGGING
+			//System.out.println(sql);	//DEBUGGING
 			
 			//ESEGUO LA QUERY
 			ResultSet res = st.executeQuery();
@@ -181,8 +181,8 @@ public class EstateDao {
 			
 			//SCANSIONO IL RISULTATO, E LO SALVO NELLA LISTA RESULT
 			while(res.next()) {
-				TourismData t = new TourismData(res.getInt("#"), res.getDate("Quarter").toLocalDate(),
-						res.getString("Purpose"), res.getDouble("Trips"));
+				TourismData t = new TourismData(res.getDate("Quarter").toLocalDate(), res.getDouble("Business"),
+						res.getDouble("Holiday"), res.getDouble("Visiting"), res.getDouble("Other"));
 				result.add(t);
 			}
 			conn.close();
@@ -359,5 +359,34 @@ public class EstateDao {
 			return null;
 		}
 	}
+	
+	//FUNZIONE DI BASE PER OTTENERE TUTTE I TOURISMDATA NEL DATABASE, IN ORDINE DECRESCENTE DI DATA
+		public List<TourismData> getLast20TourismData(){
+			final String sql = "SELECT * FROM tourism t ORDER BY t.Quarter desc";
+			try {
+				//STABILISCO LA CONNESSIONE
+				Connection conn = DBConnect.getConnection();
+				PreparedStatement st = conn.prepareStatement(sql);
+				
+				List<TourismData> result = new ArrayList<TourismData>();
+				
+				//ESEGUO LA QUERY
+				ResultSet res = st.executeQuery();
+				
+				//SCANSIONO IL RISULTATO, E LO SALVO NELLA LISTA RESULT
+				for(int i = 0;i<20;i++) {
+					res.next();
+					TourismData t = new TourismData(res.getDate("Quarter").toLocalDate(), res.getDouble("Business"),
+							res.getDouble("Holiday"), res.getDouble("Visiting"), res.getDouble("Other"));
+					result.add(t);
+				}
+				//Collections.reverse(result);
+				conn.close();
+				return result;
+			}catch (SQLException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
 
 }

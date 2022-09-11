@@ -1,7 +1,6 @@
 package it.polito.tdp.Tesi;
 
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 
 import it.polito.tdp.Tesi.model.Model;
 import javafx.fxml.FXMLLoader;

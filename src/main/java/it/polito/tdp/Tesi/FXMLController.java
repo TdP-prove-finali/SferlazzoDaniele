@@ -52,7 +52,12 @@ public class FXMLController {
 
     @FXML
     void handleAnalizza(ActionEvent event) {
-
+    	txtResult.clear();
+    	if(cmbAbitazione.getValue()==null) {
+    		txtResult.appendText("Selezionare un'Abitazione dall'apposita tendina");
+    		return;
+    	}
+    	txtResult.appendText(this.model.simulazione(cmbAbitazione.getValue()));
     }
 
     @FXML
