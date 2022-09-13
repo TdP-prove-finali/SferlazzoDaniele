@@ -97,11 +97,8 @@ public class EstateDao {
 				st.setString(4, sellerG);
 			}
 			
-			System.out.println(sql);	//DEBUGGING
-			
 			//ESEGUO LA QUERY
 			ResultSet res = st.executeQuery();
-			
 			//SCANSIONO IL RISULTATO, E LO SALVO NELLA LISTA RESULT
 			while(res.next()) {
 				Property p = new Property(res.getInt("#"), res.getString("Suburb"), res.getString("Address"), res.getInt("Rooms"),
@@ -360,7 +357,6 @@ public class EstateDao {
 		}
 	}
 	
-	//FUNZIONE DI BASE PER OTTENERE TUTTE I TOURISMDATA NEL DATABASE, IN ORDINE DECRESCENTE DI DATA
 		public List<TourismData> getLast20TourismData(){
 			final String sql = "SELECT * FROM tourism t ORDER BY t.Quarter desc";
 			try {
@@ -380,7 +376,6 @@ public class EstateDao {
 							res.getDouble("Holiday"), res.getDouble("Visiting"), res.getDouble("Other"));
 					result.add(t);
 				}
-				//Collections.reverse(result);
 				conn.close();
 				return result;
 			}catch (SQLException e) {

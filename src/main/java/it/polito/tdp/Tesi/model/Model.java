@@ -71,11 +71,11 @@ public class Model {
 			List<Property> properties = this.dao.getPropertiesFilteredAsc(car, priceMax, rooms, suburb, sellerG);
 			
 			if(properties.size()==0) {
-				//LISTA VUOTA, NON E STATA TROVATA NESSUNA ABITAZIONE
+				//LISTA VUOTA, NON E' STATA TROVATA NESSUNA ABITAZIONE
 				return properties;
 			}
 			
-			List<Property> resultList = new ArrayList<Property>();	//PROBLEMA, LISTA VUOTA	/GESTIRE CASO DI LISTA VUOTA)
+			List<Property> resultList = new ArrayList<Property>();
 			while(somma<=budget && properties.size()!=0) {
 				resultList.add(properties.get(0));
 				somma += properties.get(0).getPrice();
@@ -85,9 +85,6 @@ public class Model {
 				somma -= resultList.get(resultList.size()-1).getPrice();
 				resultList.remove(resultList.size()-1);
 			}
-			/*String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
-			for(Property p : resultList)
-				result += p+"\n";*/
 			return resultList;
 			
 		}
@@ -119,17 +116,12 @@ public class Model {
 					}
 				}
 			}
-			
-			
-			/*String result = "Lista composta da " + resultList.size() + " abitazioni, per un totale di: " + somma + "$\n";
-			for(Property p : resultList)
-				result += p+"\n";*/
 			return resultList;
 			
 		}
 		
 		if(obiettivo.equals("Maggior guadagno mensile")) {		//OBIETTIVO 3
-			//DA FARE RICORSIONE
+			//ALGORITMO DI RICORSIONE
 			
 			List<Property> properties = this.dao.getPropertiesFilteredDesc(car, priceMax, rooms, suburb, sellerG);
 			
@@ -139,7 +131,7 @@ public class Model {
 			
 		}
 		
-		return null;	//INUTILE, PER NON DARE ERRORE
+		return null;
 	}
 	
 	public String simulazione(Property abitazione) {

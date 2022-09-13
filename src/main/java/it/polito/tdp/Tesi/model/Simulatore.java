@@ -42,7 +42,6 @@ public class Simulatore {
 		this.dataAttuale = this.turismoPrecedente.get(0).getQuarter().plusMonths(3);
 		this.generateTurismoAttuale();
 		this.generateEvent();
-		//this.dataAttuale = this.turismoAttuale.getQuarter();
 		
 	}
 	
@@ -51,12 +50,12 @@ public class Simulatore {
 	public void run() {
 		int i = 0;
 		while(guadagno<abitazione.getPrice()) {		//LIMITE DELLA SIMULAZIONE
-			dataAttuale = dataAttuale.plusMonths(1);		//AGGIORNO LA DATA, POICHE PASSA UN MESE
+			dataAttuale = dataAttuale.plusMonths(1);		//AGGIORNO LA DATA, POICHE' PASSA UN MESE
 			i++;
 			if(i==3) {
 				i=0;
 				this.generateTurismoAttuale();
-				//POICHE HO CAMBIATO QUARTER
+				//POICHE HO CAMBIATO STAGIONE
 			}
 			this.handleEvent(eventoAttuale);
 		}
@@ -166,10 +165,10 @@ public class Simulatore {
 		turismoAttuale = new TourismData(nuovoQuarter, business, holiday, visiting, other);
 		turismoPrecedente.remove(turismoPrecedente.size()-1);
 		turismoPrecedente.add(0,turismoAttuale);
-		//RIMUOVO L'ELEMENTO PIU VECCHIO DALLA LISTA, ED AGGIUNGO IL NUOVO ELEMENTO IN PRIM POSIZIONE
+		//RIMUOVO L'ELEMENTO PIU VECCHIO DALLA LISTA, ED AGGIUNGO IL NUOVO ELEMENTO IN PRIMA POSIZIONE
 	}
 
-	private void generateEvent() {	//GENERA L'EVENTO DA UTILIZZARE NEL PROSSIMO MESE
+	private void generateEvent() {
 		double random = Math.random();
 		if(random<0.034) {
 			//CASA SFITTA
