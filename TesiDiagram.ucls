@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="it.polito.tdp.Tesi.FXMLController" project="Tesi" 
     file="/Tesi/src/main/java/it/polito/tdp/Tesi/FXMLController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="367" width="249" x="529" y="13"/>    
+    <position height="487" width="254" x="529" y="13"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="it.polito.tdp.Tesi.model.Simulatore" project="Tesi" 
     file="/Tesi/src/main/java/it/polito/tdp/Tesi/model/Simulatore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="637" y="568"/>    
+    <position height="-1" width="-1" x="637" y="652"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="it.polito.tdp.Tesi.model.TourismData" project="Tesi" 
     file="/Tesi/src/main/java/it/polito/tdp/Tesi/model/TourismData.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="627" y="946"/>    
+    <position height="-1" width="-1" x="628" y="1015"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -119,107 +119,127 @@
     </display>  
   </class>  
   <association id="14">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="15" name="resultList">        
-        <position height="20" width="65" x="1068" y="184"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="15" name="model">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
-        <position height="18" width="25" x="1082" y="268"/>      
+      <multiplicity id="16" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="17">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="18" name="dao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
     <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="18" name="propertiesDesc">        
+      <attribute id="21" name="propertiesDesc">        
         <position height="20" width="99" x="1043" y="244"/>      
       </attribute>      
-      <multiplicity id="19" minimum="0" maximum="2147483647">        
+      <multiplicity id="22" minimum="0" maximum="2147483647">        
         <position height="18" width="25" x="1073" y="222"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="21" name="abitazione">        
-        <position height="20" width="67" x="699" y="402"/>      
-      </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <association id="23">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="24" name="model"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="27" name="turismoPrecedente">        
-        <position height="20" width="117" x="484" y="738"/>      
+      <attribute id="24" name="turismoAttuale">        
+        <position height="20" width="92" x="634" y="810"/>      
       </attribute>      
-      <multiplicity id="28" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="25" minimum="0" maximum="1">        
+        <position height="0" width="0" x="1" y="69"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="30" name="type"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="33" name="dao"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
+  <association id="26">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="36" name="eventoAttuale">        
-        <position height="20" width="86" x="431" y="657"/>      
+      <attribute id="27" name="eventoAttuale">        
+        <position height="20" width="86" x="434" y="709"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
+      <multiplicity id="28" minimum="0" maximum="1">        
         <position height="18" width="27" x="449" y="674"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="38">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </nesting>  
-  <association id="39">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="40" name="affitti">        
-        <position height="20" width="39" x="445" y="591"/>      
+  <association id="29">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="30" name="resultList">        
+        <position height="20" width="65" x="1068" y="184"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="31" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="1082" y="268"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="33" name="affitti">        
+        <position height="20" width="39" x="452" y="625"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="42">    
+  <association id="35">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="43" name="turismoAttuale">        
-        <position height="20" width="92" x="633" y="741"/>      
+      <attribute id="36" name="abitazione">        
+        <position height="20" width="67" x="745" y="503"/>      
       </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="39" name="turismoPrecedente">        
+        <position height="20" width="117" x="485" y="807"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="1" y="69"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="41">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <association id="42">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="43" name="type">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

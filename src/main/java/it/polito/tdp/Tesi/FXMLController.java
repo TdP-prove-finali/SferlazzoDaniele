@@ -6,12 +6,16 @@ import java.util.ResourceBundle;
 
 import it.polito.tdp.Tesi.model.Model;
 import it.polito.tdp.Tesi.model.Property;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class FXMLController {
 	
@@ -43,21 +47,63 @@ public class FXMLController {
 
     @FXML
     private TextArea txtResult;
+    
+    @FXML
+    private TextArea txtResultAnalizza;
 
     @FXML
     private TextField txtRooms;
 
     @FXML
     private TextField txtPrice;
+    
+    
+    
+    @FXML
+    private TableView<Property> tblProperties;
+    
+    @FXML
+    private TableColumn<Property, String> clAddress;
 
     @FXML
-    void handleAnalizza(ActionEvent event) {
+    private TableColumn<Property, Integer> clCar;
+
+    @FXML
+    private TableColumn<Property, Integer> clPostCode;
+
+    @FXML
+    private TableColumn<Property, Integer> clPrice;
+
+    @FXML
+    private TableColumn<Property, String> clRegionName;
+
+    @FXML
+    private TableColumn<Property, Integer> clRooms;
+
+    @FXML
+    private TableColumn<Property, String> clSellerG;
+
+    @FXML
+    private TableColumn<Property, String> clSuburb;
+    
+    
+
+    private String analisiPreliminare;
+    
+    @FXML
+    void handleAnalisiPreliminare(ActionEvent event) {
     	txtResult.clear();
+    	txtResult.appendText(analisiPreliminare);
+    }
+    
+    @FXML
+    void handleAnalizza(ActionEvent event) {
+    	txtResultAnalizza.clear();
     	if(cmbAbitazione.getValue()==null) {
-    		txtResult.appendText("Selezionare un'Abitazione dall'apposita tendina");
+    		txtResultAnalizza.appendText("Selezionare un'Abitazione dall'apposita tendina");
     		return;
     	}
-    	txtResult.appendText(this.model.simulazione(cmbAbitazione.getValue()));
+    	txtResultAnalizza.appendText(this.model.simulazione(cmbAbitazione.getValue()));
     }
 
     @FXML
@@ -112,48 +158,82 @@ public class FXMLController {
     			txtResult.appendText("Non è stata trovata nessuna abitazione secondo i filtri selezionati");
     			return;
     		}
-    		String temp = "";
     		int somma = 0;
     		for(Property p : properties) {
-    			temp += p+"\n";
     			somma+= p.getPrice();
     		}
-    		String result = "Lista composta da " + properties.size() + " abitazioni, per un totale di: " + somma + "$\n" + temp;
+    		String result = "Lista composta da " + properties.size() + " abitazioni, per un totale di: " + somma + "$\n";
     		txtResult.appendText(result);
+    		cmbAbitazione.getItems().clear();
     		cmbAbitazione.getItems().addAll(properties);
+    		
+    		//IMPOSTO LA TABELLA
+    		clSuburb.setCellValueFactory(new PropertyValueFactory<Property, String>("suburb"));
+    		clAddress.setCellValueFactory(new PropertyValueFactory<Property, String>("address"));
+    		clRooms.setCellValueFactory(new PropertyValueFactory<Property, Integer>("rooms"));
+    		clPrice.setCellValueFactory(new PropertyValueFactory<Property, Integer>("price"));
+    		clSellerG.setCellValueFactory(new PropertyValueFactory<Property, String>("sellerG"));
+    		clPostCode.setCellValueFactory(new PropertyValueFactory<Property, Integer>("postCode"));
+    		clCar.setCellValueFactory(new PropertyValueFactory<Property, Integer>("car"));
+    		clRegionName.setCellValueFactory(new PropertyValueFactory<Property, String>("regionName"));
+    		
+    		tblProperties.setItems(FXCollections.observableArrayList(properties));
+    		
     		return;
     	}
     	
     	if(obiettivo.equals("Maggior guadagno mensile")) {	//CASO 3
     		List<Property> properties = this.model.getRecommendedList(obiettivo, budget, car, priceMax, sellerG, suburb, rooms);
-    		if(properties.size()==0) {
+    		if(properties == null || properties.size()==0) {
     			//CASO LISTA VUOTA
     			txtResult.appendText("Non è stata trovata nessuna abitazione secondo i filtri selezionati");
     			return;
     		}
-    		String temp = "";
     		int somma = 0;
     		int rentTot = 0;
     		for(Property p : properties) {
-    			temp += p+"\n";
     			somma += p.getPrice();
     			rentTot += p.getMensilRent();
     		}
     		String result = "Lista composta da " + properties.size() + " abitazioni, per un totale di: " + somma + "$\n"+
-    				"Guadagno complessivo mensile: " + rentTot + "$\n"+ temp;
+    				"Guadagno complessivo mensile: " + rentTot + "$\n";
     		txtResult.appendText(result);
+    		cmbAbitazione.getItems().clear();
     		cmbAbitazione.getItems().addAll(properties);
+    		
+    		//IMPOSTO LA TABELLA
+    		clSuburb.setCellValueFactory(new PropertyValueFactory<Property, String>("suburb"));
+    		clAddress.setCellValueFactory(new PropertyValueFactory<Property, String>("address"));
+    		clRooms.setCellValueFactory(new PropertyValueFactory<Property, Integer>("rooms"));
+    		clPrice.setCellValueFactory(new PropertyValueFactory<Property, Integer>("price"));
+    		clSellerG.setCellValueFactory(new PropertyValueFactory<Property, String>("sellerG"));
+    		clPostCode.setCellValueFactory(new PropertyValueFactory<Property, Integer>("postCode"));
+    		clCar.setCellValueFactory(new PropertyValueFactory<Property, Integer>("car"));
+    		clRegionName.setCellValueFactory(new PropertyValueFactory<Property, String>("regionName"));
+    		
+    		tblProperties.setItems(FXCollections.observableArrayList(properties));
+    		
     		return;
     	}
     }
 
     @FXML
     void initialize() {
+    	assert cbCar != null : "fx:id=\"cbCar\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clAddress != null : "fx:id=\"clAddress\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clCar != null : "fx:id=\"clCar\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clPostCode != null : "fx:id=\"clPostCode\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clPrice != null : "fx:id=\"clPrice\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clRegionName != null : "fx:id=\"clRegionName\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clRooms != null : "fx:id=\"clRooms\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clSellerG != null : "fx:id=\"clSellerG\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert clSuburb != null : "fx:id=\"clSuburb\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cbCar != null : "fx:id=\"cbCar\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cmbAbitazione != null : "fx:id=\"cmbAbitazione\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cmbObiettivo != null : "fx:id=\"cmbObiettivo\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cmbSellerG != null : "fx:id=\"cmbSellerG\" was not injected: check your FXML file 'Scene.fxml'.";
         assert cmbSuburb != null : "fx:id=\"cmbSuburb\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert tblProperties != null : "fx:id=\"tblProperties\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtBudget != null : "fx:id=\"txtBudget\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtRooms != null : "fx:id=\"txtRooms\" was not injected: check your FXML file 'Scene.fxml'.";
@@ -164,7 +244,8 @@ public class FXMLController {
     public void setModel(Model model) {
     	this.model = model;
     	txtResult.clear();
-    	txtResult.appendText(this.model.initialAnalysis());
+    	this.analisiPreliminare = this.model.initialAnalysis();
+    	txtResult.appendText(this.analisiPreliminare);
     	
     	this.cmbSellerG.getItems().addAll(this.model.getAllSellerG());
     	this.cmbSuburb.getItems().addAll(this.model.getAllSuburbs());

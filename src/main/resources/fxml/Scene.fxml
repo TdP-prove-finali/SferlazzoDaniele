@@ -5,56 +5,100 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.Tesi.FXMLController">
+<BorderPane prefHeight="634.0" prefWidth="807.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polito.tdp.Tesi.FXMLController">
    <center>
-      <VBox prefHeight="370.0" prefWidth="386.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="539.0" prefWidth="798.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox spacing="20.0">
+            <HBox>
                <children>
-                  <Label text="Budget" />
-                  <TextField fx:id="txtBudget" />
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleCalcola" text="Calcola Insieme" />
-               </children>
-            </HBox>
-            <HBox spacing="9.0">
-               <children>
-                  <Label text="Obiettivo" />
-                  <ComboBox fx:id="cmbObiettivo" prefHeight="26.0" prefWidth="242.0" />
-               </children>
-            </HBox>
-            <VBox spacing="10.0">
-               <children>
-                  <HBox spacing="80.0">
+                  <VBox prefHeight="206.0" prefWidth="472.0" spacing="6.0">
                      <children>
-                        <ComboBox fx:id="cmbSuburb" prefWidth="150.0" />
-                        <ComboBox fx:id="cmbSellerG" prefWidth="150.0" />
+                        <Label prefHeight="38.0" prefWidth="432.0" text="Inserire un budget ed un obiettivo dell'analisi per ottenere una lista&#10;di abitazioni adatta alle sue esigenze nella tabella sottostante" />
+                        <HBox spacing="53.0">
+                           <children>
+                              <Label text="Budget" />
+                              <TextField fx:id="txtBudget" />
+                              <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#handleCalcola" text="Calcola Insieme" />
+                           </children>
+                        </HBox>
+                        <HBox spacing="100.0">
+                           <children>
+                              <Label text="Obiettivo" />
+                              <ComboBox fx:id="cmbObiettivo" prefHeight="26.0" prefWidth="242.0" />
+                           </children>
+                        </HBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <HBox spacing="91.0">
+                                 <children>
+                                    <ComboBox fx:id="cmbSuburb" prefWidth="150.0" />
+                                    <ComboBox fx:id="cmbSellerG" prefWidth="150.0" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="91.0">
+                                 <children>
+                                    <TextField fx:id="txtRooms" promptText="Numero Stanze" />
+                                    <TextField fx:id="txtPrice" promptText="Prezzo massimo" />
+                                 </children>
+                              </HBox>
+                              <HBox spacing="148.0">
+                                 <children>
+                                    <CheckBox fx:id="cbCar" mnemonicParsing="false" text="Posto Auto" />
+                                    <Button mnemonicParsing="false" onAction="#handleAnalisiPreliminare" prefHeight="26.0" prefWidth="161.0" text="Mostra analisi preliminare" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
+                        </VBox>
                      </children>
-                  </HBox>
-                  <HBox spacing="80.0">
+                  </VBox>
+                  <VBox spacing="5.0">
                      <children>
-                        <TextField fx:id="txtRooms" promptText="Numero Stanze" />
-                        <TextField fx:id="txtPrice" promptText="Prezzo massimo" />
+                        <Label text="Analisi preliminare delle proprietà" />
+                        <TextArea fx:id="txtResult" editable="false" prefHeight="182.0" prefWidth="406.0" />
                      </children>
-                  </HBox>
-                  <CheckBox fx:id="cbCar" mnemonicParsing="false" text="Posto Auto" />
-               </children>
-               <VBox.margin>
-                  <Insets right="10.0" />
-               </VBox.margin>
-            </VBox>
-            <HBox spacing="108.0">
-               <children>
-                  <ComboBox fx:id="cmbAbitazione" prefWidth="150.0" />
-                  <Button mnemonicParsing="false" onAction="#handleAnalizza" text="Analizza proprietà" />
+                  </VBox>
                </children>
             </HBox>
-            <TextArea fx:id="txtResult" editable="false" prefHeight="200.0" prefWidth="200.0" />
+            <TableView fx:id="tblProperties" prefHeight="212.0" prefWidth="798.0">
+              <columns>
+                  <TableColumn fx:id="clSuburb" prefWidth="109.60003072023392" text="Suburb" />
+                  <TableColumn fx:id="clAddress" prefWidth="152.80007934570312" text="Address" />
+                <TableColumn fx:id="clRooms" prefWidth="49.59991455078125" text="Rooms" />
+                <TableColumn fx:id="clPrice" minWidth="8.0" prefWidth="73.60003662109375" text="Price" />
+                  <TableColumn fx:id="clSellerG" prefWidth="92.79998779296875" text="SellerG" />
+                  <TableColumn fx:id="clPostCode" prefWidth="86.39996337890625" text="PostCode" />
+                  <TableColumn fx:id="clCar" prefWidth="75.20001220703125" text="Car" />
+                  <TableColumn fx:id="clRegionName" prefWidth="160.00006103515625" text="RegionName" />
+              </columns>
+            </TableView>
+            <HBox spacing="10.0">
+               <children>
+                  <VBox spacing="20.0">
+                     <children>
+                        <Label text="Dopo aver ottenuto la lista di abitazioni consigliate, selezionarne&#10;una dal menù a tendida sottostante per calcolarne il periodo di&#10;ritorno del capitale investito" />
+                        <HBox spacing="108.0">
+                           <children>
+                              <ComboBox fx:id="cmbAbitazione" prefWidth="150.0" />
+                              <Button mnemonicParsing="false" onAction="#handleAnalizza" prefHeight="26.0" prefWidth="119.0" text="Analizza proprietà" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <TextArea fx:id="txtResultAnalizza" prefHeight="182.0" prefWidth="427.0" />
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -62,6 +106,9 @@
       </VBox>
    </center>
    <top>
-      <Label text="Valutazione del mercato immobiliare di Melbourne" BorderPane.alignment="CENTER" />
+      <Label text="Valutazione del mercato immobiliare di Melbourne" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Bauhaus 93" size="24.0" />
+         </font></Label>
    </top>
 </BorderPane>
