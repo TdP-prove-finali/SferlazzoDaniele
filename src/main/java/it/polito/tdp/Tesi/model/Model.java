@@ -149,7 +149,7 @@ public class Model {
 		for(Event e : affitti)
 			result += e+"\n";
 		
-		return result;	//DA TOGLIERE
+		return result;
 		
 	}
 	
