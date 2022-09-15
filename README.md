@@ -6,4 +6,4 @@
 3. Importare sul proprio local server il file melbourne_estate.sql nella cartella db
 4. Modificare il campo password all'interno della classe DBConnect, inserendo la password del proprio host
 5. Lanciare la classe Main per eseguire il programma
-//TODO VIDEO YOUTUBE
+(per il video introduttivo del software, visitare il link: https://youtu.be/nXIga59pYew)
