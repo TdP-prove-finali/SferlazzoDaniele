@@ -92,22 +92,35 @@ public class FXMLController {
     
     @FXML
     void handleAnalisiPreliminare(ActionEvent event) {
+    	
+    	long startTime = System.nanoTime();		//TIMER
+    	
     	txtResult.clear();
     	txtResult.appendText(analisiPreliminare);
+    	
+    	long endTime = System.nanoTime();		//TIMER
+    	long duration = (endTime - startTime)/1000000;		//TIMER
+    	System.out.println(duration);		//TIMER
     }
     
     @FXML
     void handleAnalizza(ActionEvent event) {
+    	long startTime = System.nanoTime();		//TIMER
     	txtResultAnalizza.clear();
     	if(cmbAbitazione.getValue()==null) {
     		txtResultAnalizza.appendText("Selezionare un'Abitazione dall'apposita tendina");
     		return;
     	}
     	txtResultAnalizza.appendText(this.model.simulazione(cmbAbitazione.getValue()));
+    	
+    	long endTime = System.nanoTime();		//TIMER
+    	long duration = (endTime - startTime)/1000000;		//TIMER
+    	System.out.println(duration);		//TIMER
     }
 
     @FXML
     void handleCalcola(ActionEvent event) {
+    	long startTime = System.nanoTime();		//TIMER
     	txtResult.clear();
     	
     	
@@ -167,6 +180,8 @@ public class FXMLController {
     		cmbAbitazione.getItems().clear();
     		cmbAbitazione.getItems().addAll(properties);
     		
+    		
+    		
     		//IMPOSTO LA TABELLA
     		clSuburb.setCellValueFactory(new PropertyValueFactory<Property, String>("suburb"));
     		clAddress.setCellValueFactory(new PropertyValueFactory<Property, String>("address"));
@@ -178,6 +193,10 @@ public class FXMLController {
     		clRegionName.setCellValueFactory(new PropertyValueFactory<Property, String>("regionName"));
     		
     		tblProperties.setItems(FXCollections.observableArrayList(properties));
+    		
+    		long endTime = System.nanoTime();		//TIMER
+        	long duration = (endTime - startTime)/1000000;		//TIMER
+        	System.out.println(duration);		//TIMER
     		
     		return;
     	}
@@ -212,6 +231,10 @@ public class FXMLController {
     		clRegionName.setCellValueFactory(new PropertyValueFactory<Property, String>("regionName"));
     		
     		tblProperties.setItems(FXCollections.observableArrayList(properties));
+    		
+    		long endTime = System.nanoTime();		//TIMER
+        	long duration = (endTime - startTime)/1000000000;		//TIMER
+        	System.out.println(duration);		//TIMER
     		
     		return;
     	}

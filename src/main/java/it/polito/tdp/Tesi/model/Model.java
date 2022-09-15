@@ -145,7 +145,7 @@ public class Model {
 		int mesiTot = simulatore.getMesiTot();
 		List<Event> affitti = simulatore.getAffitti();
 		
-		String result = "Tempo di ritorno del capitale investito: " + mesiTot + "\n";
+		String result = "Tempo di ritorno del capitale investito: " + mesiTot + " mesi\n";
 		for(Event e : affitti)
 			result += e+"\n";
 		
